@@ -1,0 +1,28 @@
+.delBtn {
+  color: var(--gray);
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+  position: relative;
+  border-radius: 50%;
+  background: var(--gray);
+}
+
+.delBtn:before,
+.delBtn:after {
+  content: "";
+  height: 2px;
+  background: var(--white);
+  opacity: 0.5;
+  width: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.delBtn:before {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+.delBtn:after {
+  transform: translate(-50%, -50%) rotate(45deg);
+}

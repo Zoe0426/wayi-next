@@ -1,0 +1,16 @@
+.input {
+  background-color: transparent;
+  width: 100%;
+  height: 40px;
+  border-radius: 30px;
+  border: 1px solid var(--main);
+  outline: none;
+  color: var(--white);
+  line-height: 18px;
+  text-indent: 20px;
+}
+
+.input::placeholder {
+  color: var(--main);
+  line-height: 18px;
+}
