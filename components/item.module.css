@@ -1,0 +1,107 @@
+.checkbox {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid #fff;
+  width: 15px;
+  height: 15px;
+  background-color: transparent;
+  position: relative;
+  outline: none;
+  cursor: pointer;
+  margin-right: 10px;
+  border-radius: 2px;
+}
+
+.checkbox:checked:before {
+  content: "v";
+  position: absolute;
+  color: #fff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.check {
+  width: 10%;
+  display: flex;
+  align-items: center;
+}
+
+.name,
+.des,
+.status,
+.time {
+  width: 25%;
+  display: flex;
+  align-items: center;
+	word-break: break-all;
+	padding: 5px;
+}
+
+
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--main);
+  align-items: center;
+  min-height: 30px;
+}
+
+.plus {
+  display: none;
+  cursor: pointer;
+}
+
+.moreContent {
+  display: none;
+}
+
+@media screen and (max-width: 993px) {
+  .plus {
+    display: block;
+    position: absolute;
+    right: 5px;
+  }
+
+  .item {
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .moreContent {
+    display: block;
+    width: 100%;
+    background-color: var(--bgclt);
+    border-radius: 0 0 8px 8px;
+    margin-bottom: 10px;
+  }
+
+  .item .name,
+  .item .status,
+  .item .des,
+  .item .time {
+    width: 45%;
+  }
+
+  .item .des,
+  .item .time {
+    display: none;
+  }
+
+  .moreContent .des,
+  .moreContent .time {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .desTitle,
+  .timeTitle {
+    font-weight: bold;
+    text-align: center;
+    background-color: var(--gray);
+  }
+}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import MainBtn from "@/components/mainBtn";
 import SecondBtn from "@/components/secondBtn";
+import Item from "@/components/item";
 import styles from "@/styles/todoList.module.css";
 
 export default function Home() {
@@ -96,6 +97,12 @@ export default function Home() {
       });
   };
 
+  const handleReset = () => {
+    console.log("reset");
+    setTaskName("");
+    setDescription("");
+  };
+
   return (
     <>
       <Head>
@@ -107,14 +114,14 @@ export default function Home() {
       <h1 className={styles.title}>TODO</h1>
       <div className={styles.container}>
         <div className={styles.filter}>
-          <input type='checkbox' className={styles.checkbox} onChange={(e) => setHideCompleted(e.target.checked)} />
+          <input type='checkbox' className={styles.tCheckbox} onChange={(e) => setHideCompleted(e.target.checked)} />
           隱藏已完成選項
         </div>
         <div className={styles.taskTitle}>
-          <div className={styles.check}>
+          <div className={styles.tCheck}>
             <input
               type='checkbox'
-              className={styles.checkbox}
+              className={styles.tCheckbox}
               checked={allChecked}
               onChange={(e) => {
                 setAllChecked(e.target.checked);
@@ -125,45 +132,28 @@ export default function Home() {
                 }
               }}
             />
-            全選
+            <div className={styles.text}>全選</div>
           </div>
-          <div className={styles.name}>任務名稱</div>
-          <div className={styles.des}>任務描述</div>
-          <div className={styles.status}>狀態</div>
-          <div className={styles.time}>更新時間</div>
+          <div className={styles.tName}>任務名稱</div>
+          <div className={styles.tStatus}>狀態</div>
+          <div className={styles.tDes}>任務描述</div>
+          <div className={styles.tTime}>更新時間</div>
         </div>
         <div className={styles.wrap}>
           {data
             .filter((item) => !hideCompleted || item.is_completed !== 1)
             .map((data, i) => {
               return (
-                <div
-                  className={styles.item}
+                <Item
                   key={data.id}
-                  style={{
-                    textDecoration: data.is_completed === 1 ? "line-through" : "",
-                  }}
-                >
-                  <div className={styles.check}>
-                    <input
-                      type='checkbox'
-                      className={styles.checkbox}
-                      checked={checkedItems.includes(data.id)}
-                      onChange={(e) => {
-                        const itemId = data.id;
-                        if (e.target.checked) {
-                          setCheckedItems([...checkedItems, itemId]);
-                        } else {
-                          setCheckedItems(checkedItems.filter((id) => id !== itemId));
-                        }
-                      }}
-                    />
-                  </div>
-                  <div className={styles.name}>{data.name}</div>
-                  <div className={styles.des}>{data.description}</div>
-                  <div className={styles.status}>{data.is_completed === 1 ? "已完成" : "未完成"}</div>
-                  <div className={styles.time}>{data.updated_at}</div>
-                </div>
+                  id={data.id}
+                  name={data.name}
+                  status={data.is_completed}
+                  des={data.description}
+                  time={data.updated_at}
+                  checkedItems={checkedItems}
+                  setCheckedItems={setCheckedItems}
+                />
               );
             })}
         </div>
@@ -195,15 +185,15 @@ export default function Home() {
               name='description'
               cols='30'
               rows='10'
-              maxLength={30}
+              maxLength={100}
               className={styles.textarea}
-              placeholder='輸入任務描述 (限30字)'
+              placeholder='輸入任務描述 (限100字)'
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>
           <div className={styles.btns}>
-            <SecondBtn type={"reset"} text={"重填"} />
+            <SecondBtn type={"reset"} text={"重填"} onClick={handleReset} />
             <MainBtn type={"submit"} text={"新增"} />
           </div>
         </form>

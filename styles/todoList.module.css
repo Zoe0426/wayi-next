@@ -6,7 +6,8 @@
 
 .container,
 .addTask {
-  width: 1000px;
+  width: 80%;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
@@ -25,7 +26,7 @@
 .wrap {
 }
 
-.checkbox {
+.tCheckbox {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -40,7 +41,7 @@
   border-radius: 2px;
 }
 
-.checkbox:checked:before {
+.tCheckbox:checked:before {
   content: "v";
   position: absolute;
   color: #fff;
@@ -64,27 +65,19 @@
   margin-top: 10px;
 }
 
-.check {
+.tCheck {
   width: 10%;
   display: flex;
   align-items: center;
 }
 
-.name,
-.des,
-.status,
-.time {
+.tName,
+.tDes,
+.tStatus,
+.tTime {
   width: 25%;
   display: flex;
   align-items: center;
-}
-
-.item {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--main);
-  align-items: center;
-  min-height: 30px;
 }
 
 .count {
@@ -135,4 +128,19 @@
 
 .error {
   color: var(--red);
+}
+
+@media screen and (max-width: 993px) {
+  .tName,
+  .tStatus,
+  .tDes,
+  .tTime {
+    width: 50%;
+  }
+
+  .tDes,
+  .tTime,
+  .text {
+    display: none;
+  }
 }
